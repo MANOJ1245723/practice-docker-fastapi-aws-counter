@@ -1,0 +1,23 @@
+name: Deploy to AWS EC2
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd practice-docker-fastapi-aws-counter && docker compose down || true
+            cd ~ && rm -rf practice-docker-fastapi-aws-counter
+            git clone https://github.com/MANOJ1245723/practice-docker-fastapi-aws-counter.git
+            cd practice-docker-fastapi-aws-counter
+            docker compose up -d --build

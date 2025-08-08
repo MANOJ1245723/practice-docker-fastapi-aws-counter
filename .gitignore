@@ -1,0 +1,24 @@
+# SSH Keys and Certificates
+*.pem
+*.key
+counter.pem
+
+# Environment variables
+.env
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
