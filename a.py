@@ -6,4 +6,4 @@ r = redis.Redis(host='redis', port=6379, decode_responses=True)
 def get_data():
     r.incr('visited')
     value = r.get('visited')
-    return {'visited': int(value)}
+    return {'visited': int(value), 'message':'hello'}
